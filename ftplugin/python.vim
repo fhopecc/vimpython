@@ -24,7 +24,7 @@ func! python#execute()
 endfunc
 
 func! python#done(job)
-    set filetype=pythonoutput
+    set filetype=pythontrace
 endfunc
 
 func! python#execute2()
