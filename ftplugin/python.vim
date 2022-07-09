@@ -1,12 +1,3 @@
-" 除錯
-map <buffer> [[ ?File<cr>
-map <buffer> ]] /File<cr>
-py3 from python_debug import 至 
-func! python#locate()
-    py3 至()     
-endfunc
-map <buffer> gf python#locate()
-
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
 
