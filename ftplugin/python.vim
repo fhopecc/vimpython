@@ -1,6 +1,11 @@
 " 除錯
 map <buffer> [[ ?File<cr>
 map <buffer> ]] /File<cr>
+py3 from python_debug import 至 
+func! python#locate()
+    py3 至()     
+endfunc
+map <buffer> gf python#locate()
 
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
@@ -46,7 +51,7 @@ map <buffer> ;e :call python#execute()<cr>
 map <buffer> ;E :R<space>%<space>
 
 function! python#done2(job)
-    py3 from fhopecc.python_debug import tracebacktoqflist;tracebacktoqflist()
+    py3 from python_debug import tracebacktoqflist;tracebacktoqflist()
     if !empty(getqflist())
         cc
     else
@@ -86,7 +91,7 @@ func! python#test2()
     w!
     let file = expand("%:h") . "\\test_" . expand("%:t")
 
-    py3 from fhopecc.python_debug import OUTPUT, TRACE
+    py3 from python_debug import OUTPUT, TRACE
     let output = py3eval('str(OUTPUT)')
     let trace = py3eval('str(TRACE)')
     let cmd = "cmd /c py ".file." >".output." 2>".trace
