@@ -1,3 +1,7 @@
+" 除錯
+map <buffer> [[ ?File<cr>
+map <buffer> ]] /File<cr>
+
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
 
@@ -66,13 +70,15 @@ endfunction
 " 測試
 func! python#test()
     w!
-    let cmd = "topleft :terminal ++rows=10 python "
+    " let cmd = "topleft :terminal ++rows=10 python "
     let file = expand("%:t") 
     if file =~ '^test'
-        exe cmd . "%"
+        let testfile = expand("%") 
     else
-        exe cmd . expand("%:h") . "/test_" . expand("%:t")
+        let testfile = expand("%:h") . "/test_" . expand("%:t")
     endif
+    let term_opt = {"close_cb": "python#done"}
+    call term_start('python '.testfile, term_opt)
 endfunc
 map <buffer> ;t :call python#test()<cr>
 
@@ -108,3 +114,4 @@ map <buffer> <expr> <F8> ":cd " . g:wdriver . ":\\" . g:workdir . "\\vimfiles<CR
 
 " 註解--向後相容
 map <buffer> ;3 gcc<CR>
+
