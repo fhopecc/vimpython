@@ -31,7 +31,7 @@ func! python#execute2()
     w!
     let file = expand('%')
      " todo: 檢核檔案是否存在
-    py3 from fhopecc.python_debug import TRACE, OUTPUT, 清除紀錄檔
+    py3 from python_debug import TRACE, OUTPUT, 清除紀錄檔
     py3 清除紀錄檔
     call setqflist([], 'r')
     let output = py3eval('str(OUTPUT)')
@@ -46,7 +46,7 @@ function! python#done2(job)
     if !empty(getqflist())
         cc
     else
-        py3 from fhopecc.python_debug import TRACE, OUTPUT
+        py3 from python_debug import TRACE, OUTPUT
         let output_size =  py3eval('OUTPUT.stat().st_size')
         let error_size =  py3eval('TRACE.stat().st_size')
         if output_size == 0 && error_size == 0
@@ -97,10 +97,10 @@ endfunc
 map <buffer> ;P :call python#profile()<cr>
 
 " 查詢說明
-nnoremap <buffer> K <Cmd>py3 from fhopecc.python_debug import 說明;說明()<cr><c-w>w
+nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
 
 " 至定義
-nnoremap <buffer> gd <Cmd>py3 from fhopecc.python_debug import 至定義;至定義()<CR>
+nnoremap <buffer> gd <Cmd>py3 from python_debug import 至定義;至定義()<CR>
 
 " 環境設定
 map <buffer> <F7> :w!<CR>:belowright :terminal python % --setup<CR>  
