@@ -8,7 +8,6 @@ line = vim.eval("getline('.')")
 錯誤位置 = ErrorPosition(line)
 vim.command(f"ChangeWindow")
 vim.command(f"e +{錯誤位置.行號} {錯誤位置.路徑}")
-vim.command(f"ChangeWindow")
 EOF
 endfunc
 map <buffer> gf :call pythontrace#locate()<cr>

@@ -7,7 +7,8 @@ py3 from python_debug import testfile
 set foldmethod=indent
 nnoremap <space> za
 vnoremap <space> zf
-
+command! ChangeWindow normal <c-w>w
+command! MaxWindow normal <c-w>o
 " 佈署 pypi
 func! python#deploy()
     w!
@@ -22,7 +23,13 @@ map <buffer> ;d :call python#deploy()<cr>
 func! python#execute()
     w!
     let term_opt = {"close_cb": "python#done"}
+    MaxWindow
     call term_start('python '.expand('%'), term_opt)
+endfunc
+
+func! python#nextterm()
+    let name = bufnr('#')
+    return name
 endfunc
 
 func! python#done(job)
@@ -71,6 +78,7 @@ func! python#test()
     " let cmd = "topleft :terminal ++rows=10 python "
     let testfile = py3eval("testfile(r'".expand('%')."')")
     let term_opt = {"close_cb": "python#done"}
+    MaxWindow
     call term_start('python '.testfile, term_opt)
 endfunc
 map <buffer> ;t :call python#test()<cr>
