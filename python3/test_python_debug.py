@@ -1,27 +1,38 @@
 import unittest
-from pathlib import Path
 import os, sys
-from pathlib import Path
 
+from pathlib import Path
 wdir = Path(__file__).parent
 
 class TestPythonDebug(unittest.TestCase):
 
-    def test_至定義(self):
-        code = '''from stock.tifrs_schema import 科目表
-w = 科目表()
-'''
-        from jedi import Script
-        import fhopecc.env as env
-        s = Script(code=code, path='test.py')
-        gs = s.goto(2, 6, follow_imports=True)
-        self.assertGreater(len(gs), 0)
-        self.assertEqual(gs[0].module_path, env.workdir / 'stock' / 'tifrs_schema.py')
+    def test_testfile(self):
+        from python_debug import testfile
+        self.assertEqual(testfile(wdir / r'test_file.py')
+                        ,str(wdir / r'test_file.py'))
+        
+        self.assertEqual(testfile(wdir / 'file.py')
+                        ,str(wdir / r'test_file.py'))
+
+        self.assertEqual(testfile(wdir / 'file2.py')
+                        ,str(wdir.parent / f'test_{wdir.name}.py' ))
+
+
+    # def test_至定義(self):
+        # code = '''from stock.tifrs_schema import 科目表
+# w = 科目表()
+# '''
+        # from jedi import Script
+        # import fhopecc.env as env
+        # s = Script(code=code, path='test.py')
+        # gs = s.goto(2, 6, follow_imports=True)
+        # self.assertGreater(len(gs), 0)
+        # self.assertEqual(gs[0].module_path, env.workdir / 'stock' / 'tifrs_schema.py')
     
     def test_parser(self):
         # self.assertEqual('a', 'q')
-        from fhopecc.python_debug import traceback_parser, TracebackTransformer
-        from fhopecc.python_debug import parse_error_trace
+        from python_debug import traceback_parser, TracebackTransformer
+        from python_debug import parse_error_trace
         from pathlib import Path
 
         parser = traceback_parser()
@@ -102,7 +113,7 @@ w = 科目表()
         self.assertEqual(tb[0].locs[1][1], 14)
 
     def test_name(self):
-        from fhopecc.python_debug import ErrorPosition 
+        from python_debug import ErrorPosition 
         訊息 = r'File "d:\g\vimfiles\pythons\python_debug.py", line 7'
         錯訊位置 = ErrorPosition(訊息)
         self.assertEqual(錯訊位置.路徑,  

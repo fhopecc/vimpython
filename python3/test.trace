@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "D:\g\fhopecc\cache.py", line 30, in wrapper
+    return pd.read_pickle(p)
+  File "C:\Python\Python310\lib\site-packages\pandas\io\pickle.py", line 187, in read_pickle
+    with get_handle(
+  File "C:\Python\Python310\lib\site-packages\pandas\io\common.py", line 798, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\fhope\\AppData\\Local\\Temp\\cache\\af089b1a88f3229e8417bdf9eaafc13e'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\g\stock\營收預估.py", line 22, in <module>
+    m = 營收領先指標分析('潤弘', 2019, 1)
+  File "D:\g\stock\營收預估.py", line 6, in 營收領先指標分析
+    tifrs = by(stock, year, quarter)
+  File "D:\g\stock\tifrs.py", line 18, in by
+    return TIFRS(ixbrl(股票代號, 年, 季))
+  File "D:\g\stock\tifrs.py", line 29, in __init__
+    self.inst = xbrlParser.parse_instance_locally(str(xbrl), schema_root=str(schema_dir))
+  File "D:\g\fhopecc\cache.py", line 32, in wrapper
+    df = func(*args, **kargs)
+  File "D:\g\py-xbrl\xbrl\instance.py", line 693, in parse_instance_locally
+    return parse_ixbrl(path, self.cache, instance_url, schema_root=schema_root)
+  File "D:\g\py-xbrl\xbrl\instance.py", line 420, in parse_ixbrl
+    taxonomy: TaxonomySchema = parse_taxonomy(schema_path, cache)
+  File "D:\g\py-xbrl\xbrl\taxonomy.py", line 528, in parse_taxonomy
+    raise TaxonomyNotFound(f"Could not find taxonomy schema at {schema_path}")
+xbrl.TaxonomyNotFound: The taxonomy with namespace Could not find taxonomy schema at D:\hlao\tifrs-20200630\XBRL_TW_Entry_Points\CI\CR\tifrs-ci-cr-2019-03-31.xsd could not be found. Please check if it is imported in the schema file

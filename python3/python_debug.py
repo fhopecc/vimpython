@@ -6,6 +6,20 @@ import re
 TRACE = TEMP / 'error.trace' 
 OUTPUT = TEMP / 'output.trace' 
 
+def testfile(f:Path, debug=True):
+    '依據路徑推論測試檔位置'
+    if not isinstance(f, Path): 
+        f = Path(f)
+    test:Path = f.parent / f'test_{f.name}'
+    pat = r'test_'
+    if m:=re.match(pat, f.name):
+        test = f
+    if test.exists(): return str(test) 
+    test = f.parent.parent / f'test_{f.parent.name}.py' 
+    if test.exists(): return str(test) 
+    return None
+
+
 def 清除紀錄檔():
     TRACE.unlink()
     OUTPUT.unlink()
@@ -109,7 +123,6 @@ class TracebackTransformer(Transformer):
         loc = tks[0].value
         return loc
 
-# IndexError: list index out of range
 class ErrorPosition(object):
     def __init__(self, 訊息):
         模式 = r'.*File "(.+.py)", line (\d+).*'
@@ -141,7 +154,6 @@ def 至():
     import vim
     line = vim.eval("getline('.')")
     錯誤位置 = ErrorPosition(line)
-    #print(f"e +{錯誤位置.行號} {錯誤位置.路徑}")
     vim.command(f"e +{錯誤位置.行號} {錯誤位置.路徑}")
 
 def 測試():
@@ -180,11 +192,3 @@ def 說明():
         docfile.write_text(r.docstring(), encoding='utf8')
         vim.command(f":belowright :split {docfile}")
         vim.command(f"set ft=pydoc")
-
-if __name__ == '__main__':
-    import jedi, fhopecc.env
-    from pathlib import Path
-    f = Path(r'D:\g\110稅務局徵課會計\地價稅\資訊研析\landtax.py')
-    script = jedi.Script(path=str(f))
-    s = script.goto(35, 13)[0]
-    print(s.module_path)

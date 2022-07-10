@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "d:\g\stock\現金分析.py", line 33, in <module>
+    print(t.年)
+  File "D:\g\stock\tifrs.py", line 45, in __getattr__
+    return self.value(屬性名)
+  File "D:\g\stock\tifrs.py", line 52, in value
+    a = Account(屬性名)
+TypeError: __init__() should return None, not 'str'

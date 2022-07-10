@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "d:\hlao\8.總決算\110年度\初稿\參考資料\環保基金\參考資料文稿自動產製.py", line 39, in <module>
+    print(業務計畫實施情形文稿(f))
+  File "d:\hlao\8.總決算\110年度\初稿\參考資料\環保基金\參考資料文稿自動產製.py", line 30, in 業務計畫實施情形文稿
+    實際增加計畫數 = df.query('原始增減數>0').count()
+  File "C:\Python39\lib\site-packages\pandas\core\frame.py", line 3469, in query
+    res = self.eval(expr, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\frame.py", line 3599, in eval
+    return _eval(expr, inplace=inplace, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\eval.py", line 342, in eval
+    parsed_expr = Expr(expr, engine=engine, parser=parser, env=env)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 798, in __init__
+    self.terms = self.parse()
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 817, in parse
+    return self._visitor.visit(self.expr)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 401, in visit
+    return visitor(node, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 407, in visit_Module
+    return self.visit(expr, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 401, in visit
+    return visitor(node, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 410, in visit_Expr
+    return self.visit(node.value, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 401, in visit
+    return visitor(node, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 710, in visit_Compare
+    return self.visit(binop)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 401, in visit
+    return visitor(node, **kwargs)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 524, in visit_BinOp
+    return self._maybe_evaluate_binop(op, op_class, left, right)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 518, in _maybe_evaluate_binop
+    return self._maybe_eval(res, eval_in_python + maybe_eval_in_python)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\expr.py", line 478, in _maybe_eval
+    return binop.evaluate(
+  File "C:\Python39\lib\site-packages\pandas\core\computation\ops.py", line 421, in evaluate
+    res = self(env)
+  File "C:\Python39\lib\site-packages\pandas\core\computation\ops.py", line 401, in __call__
+    return self.func(left, right)
+  File "C:\Python39\lib\site-packages\pandas\core\ops\common.py", line 65, in new_method
+    return method(self, other)
+  File "C:\Python39\lib\site-packages\pandas\core\arraylike.py", line 45, in __gt__
+    return self._cmp_method(other, operator.gt)
+  File "C:\Python39\lib\site-packages\pandas\core\series.py", line 4978, in _cmp_method
+    res_values = ops.comparison_op(lvalues, rvalues, op)
+  File "C:\Python39\lib\site-packages\pandas\core\ops\array_ops.py", line 243, in comparison_op
+    res_values = comp_method_OBJECT_ARRAY(op, lvalues, rvalues)
+  File "C:\Python39\lib\site-packages\pandas\core\ops\array_ops.py", line 55, in comp_method_OBJECT_ARRAY
+    result = libops.scalar_compare(x.ravel(), y, op)
+  File "pandas\_libs\ops.pyx", line 103, in pandas._libs.ops.scalar_compare
+TypeError: '>' not supported between instances of 'str' and 'int'

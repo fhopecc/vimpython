@@ -1,6 +1,8 @@
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
 
+py3 from python_debug import testfile
+
 " 程式碼區塊折疊
 set foldmethod=indent
 nnoremap <space> za
@@ -67,12 +69,7 @@ endfunction
 func! python#test()
     w!
     " let cmd = "topleft :terminal ++rows=10 python "
-    let file = expand("%:t") 
-    if file =~ '^test'
-        let testfile = expand("%") 
-    else
-        let testfile = expand("%:h") . "/test_" . expand("%:t")
-    endif
+    let testfile = py3eval("testfile(r'".expand('%')."')")
     let term_opt = {"close_cb": "python#done"}
     call term_start('python '.testfile, term_opt)
 endfunc
@@ -98,6 +95,7 @@ map <buffer> ;P :call python#profile()<cr>
 
 " 查詢說明
 nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
+
 
 " 至定義
 nnoremap <buffer> gd <Cmd>py3 from python_debug import 至定義;至定義()<CR>

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "d:\g\fhopecc\test_python_debug.py", line 9, in test_parser
+    self.assertEqual('d', 'www')
+AssertionError: 'd' != 'www'
