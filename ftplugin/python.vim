@@ -10,7 +10,7 @@ vnoremap <space> zf
 command! ChangeWindow normal <c-w>w
 command! MaxWindow normal <c-w>o
 
-" 佈署 pypi
+" 佈署至 pypi
 func! python#deploy()
     w!
     let dir = expand('%:h')
@@ -48,7 +48,6 @@ func! python#execute2()
     let job = job_start("cmd /c py ".file." >".output." 2>".trace, {"close_cb": "python#done"})
 endfunc
 map <buffer> ;e :call python#execute()<cr>
-map <buffer> ;E :R<space>%<space>
 
 function! python#done2(job)
     py3 from python_debug import tracebacktoqflist;tracebacktoqflist()
@@ -104,7 +103,6 @@ map <buffer> ;P :call python#profile()<cr>
 " 查詢說明
 nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
 
-
 " 至定義
 nnoremap <buffer> gd <Cmd>py3 from python_debug import 至定義;至定義()<CR>
 
@@ -116,4 +114,3 @@ map <buffer> <expr> <F8> ":cd " . g:wdriver . ":\\" . g:workdir . "\\vimfiles<CR
 
 " 註解--向後相容
 map <buffer> ;3 gcc<CR>
-
