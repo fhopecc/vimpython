@@ -9,6 +9,7 @@ nnoremap <space> za
 vnoremap <space> zf
 command! ChangeWindow normal <c-w>w
 command! MaxWindow normal <c-w>o
+
 " 佈署 pypi
 func! python#deploy()
     w!
