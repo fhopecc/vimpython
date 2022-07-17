@@ -27,6 +27,9 @@ func! python#execute()
     call term_start('python '.expand('%'), term_opt)
 endfunc
 
+" 交談式介面實驗
+map <buffer> ;i :term ipython
+
 func! python#nextterm()
     let name = bufnr('#')
     return name
