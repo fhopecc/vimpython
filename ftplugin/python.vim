@@ -14,8 +14,8 @@ command! MaxWindow normal <c-w>o
 func! python#deploy()
     w!
     let dir = expand('%:h')
-    !py -m build
     !del dist\*
+    !py -m build
     call term_start('twine upload dist\*')
 endfunc
 map <buffer> ;d :call python#deploy()<cr>
