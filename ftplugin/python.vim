@@ -15,6 +15,7 @@ func! python#deploy()
     w!
     let dir = expand('%:h')
     !py -m build
+    !del dist\*
     call term_start('twine upload dist\*')
 endfunc
 map <buffer> ;d :call python#deploy()<cr>
