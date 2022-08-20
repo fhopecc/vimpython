@@ -22,7 +22,7 @@ func! javascript#test()
     let term_opt = {"close_cb": "javascript:jest_done"}
     call term_start(cmd, term_opt)
 endfunc
-func! javascript:jest_done(job)
+func! javascript#jest_done(job)
     set filetype=jest
 endfunc
 map <buffer> ;t :call javascript#test()<CR>
