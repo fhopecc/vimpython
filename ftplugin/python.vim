@@ -4,9 +4,9 @@
 py3 from python_debug import testfile
 
 " 程式碼區塊折疊
-set foldmethod=indent
-nnoremap <space> za
-vnoremap <space> zf
+" set foldmethod=indent
+" nnoremap <space> za
+" vnoremap <space> zf
 command! ChangeWindow normal <c-w>w
 command! MaxWindow normal <c-w>o
 
@@ -77,7 +77,6 @@ endfunction
 " 測試
 func! python#test()
     w!
-    " let cmd = "topleft :terminal ++rows=10 python "
     let testfile = py3eval("testfile(r'".expand('%')."')")
     let term_opt = {"close_cb": "python#done"}
     MaxWindow
