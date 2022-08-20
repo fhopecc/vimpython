@@ -3,6 +3,13 @@ from pathlib import Path
 from fhopecc.winman import TEMP
 import re
 
+def 至():
+    from zhongwen.file import FileLocation
+    import vim
+    line = vim.eval("getline('.')")
+    錯誤位置 = FileLocation(line)
+    vim.command(f"e +{錯誤位置.列} {錯誤位置.路徑}")
+
 TRACE = TEMP / 'error.trace' 
 OUTPUT = TEMP / 'output.trace' 
 
@@ -122,12 +129,6 @@ class TracebackTransformer(Transformer):
         loc = tks[0].value
         return loc
 
-def 至():
-    from zhongwen.file import FileLocation
-    import vim
-    line = vim.eval("getline('.')")
-    錯誤位置 = FileLocation(line)
-    vim.command(f"e +{錯誤位置.列} {錯誤位置.路徑}")
 
 def 測試():
     from pathlib import Path
