@@ -1,14 +1,13 @@
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
-
 py3 from python_debug import testfile
 
 " 程式碼區塊折疊
 " set foldmethod=indent
 " nnoremap <space> za
 " vnoremap <space> zf
-command! ChangeWindow normal <c-w>w
-command! MaxWindow normal <c-w>o
+command! -buffer ChangeWindow normal <c-w>w
+command! -buffer MaxWindow normal <c-w>o
 
 " 佈署至 pypi
 func! python#deploy()
