@@ -3,7 +3,7 @@ command! -buffer MaxWindow normal <c-w>o
 
 func! javascript#run() 
     w!
-    let term_opt = {"close_cb": "javascript:done"}
+    let term_opt = {"close_cb": "javascript#done"}
     let cmd = "cd " . expand("%:p:h") . "&& node " . expand("%:p:t") 
     MaxWindow
     call term_start(cmd , term_opt)
@@ -19,7 +19,7 @@ func! javascript#test()
     w!
     MaxWindow
     let cmd = "cmd /c cd " . expand("%:p:h") . "&& npm run test"
-    let term_opt = {"close_cb": "javascript:jest_done"}
+    let term_opt = {"close_cb": "javascript#jest_done"}
     call term_start(cmd, term_opt)
 endfunc
 func! javascript#jest_done(job)
