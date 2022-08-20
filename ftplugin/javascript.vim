@@ -10,7 +10,7 @@ func! javascript#run()
 endfunc
 map <buffer> ;e :call javascript#run()<CR>
 
-func! javascript:done(job)
+func! javascript#done(job)
     set filetype=nodetrace
 endfunc
 
