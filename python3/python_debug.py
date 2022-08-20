@@ -122,38 +122,12 @@ class TracebackTransformer(Transformer):
         loc = tks[0].value
         return loc
 
-class ErrorPosition(object):
-    def __init__(self, 訊息):
-        模式 = r'.*File "(.+.py)", line (\d+).*'
-        import re 
-        if m:=re.match(模式, 訊息):
-            self.路徑 = m[1]
-            self.行號 = int(m[2])
-            return
-
-        模式 = r'(.*\.py):(\d+):.*'
-        if m:=re.match(模式, 訊息):
-            self.路徑 = m[1]
-            self.行號 = int(m[2])
-            return
-        
-        模式 = r'.*: (.+\.js):.*\((\d+):.+\).*'
-        if m:=re.match(模式, 訊息):
-            self.路徑 = m[1]
-            self.行號 = int(m[2])
-            return
-        
-        模式 = r'.+\((.+\.js):(\d+):.*'
-        if m:=re.match(模式, 訊息):
-            self.路徑 = m[1]
-            self.行號 = int(m[2])
-            return
-
 def 至():
+    from zhongwen.file import FileLocation
     import vim
     line = vim.eval("getline('.')")
-    錯誤位置 = ErrorPosition(line)
-    vim.command(f"e +{錯誤位置.行號} {錯誤位置.路徑}")
+    錯誤位置 = FileLocation(line)
+    vim.command(f"e +{錯誤位置.列} {錯誤位置.路徑}")
 
 def 測試():
     from pathlib import Path
