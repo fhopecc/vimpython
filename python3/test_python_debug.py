@@ -112,19 +112,5 @@ class TestPythonDebug(unittest.TestCase):
         self.assertEqual(tb[0].locs[0][0], 'd:\\g\\fhopecc\\test_chinese.py')
         self.assertEqual(tb[0].locs[1][1], 14)
 
-    def test_name(self):
-        from python_debug import ErrorPosition 
-        訊息 = r'File "d:\g\vimfiles\pythons\python_debug.py", line 7'
-        錯訊位置 = ErrorPosition(訊息)
-        self.assertEqual(錯訊位置.路徑,  
-                         r"d:\g\vimfiles\pythons\python_debug.py"
-                         )
-        self.assertEqual(錯訊位置.行號, 7)
-        訊息 = r' at Object.<anonymous> (表.test.js:50:42)'
-        錯訊位置 = ErrorPosition(訊息)
-        self.assertEqual(錯訊位置.路徑,  
-                         r"表.test.js"
-                         )
- 
 if __name__ == '__main__':
     unittest.main()
