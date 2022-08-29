@@ -17,11 +17,18 @@ def testfile(f:Path, debug=True):
     '依據路徑推論測試檔位置'
     if not isinstance(f, Path): 
         f = Path(f)
-    test:Path = f.parent / f'test_{f.name}'
+
+    test = f.parent / f'test_{f.name}'
+    if test.exists(): return str(test) 
+
     pat = r'test_'
     if m:=re.match(pat, f.name):
         test = f
     if test.exists(): return str(test) 
+
+    test = f.parent.parent / f'test_{f.name}'
+    if test.exists(): return str(test) 
+
     test = f.parent.parent / f'test_{f.parent.name}.py' 
     if test.exists(): return str(test) 
     return None
