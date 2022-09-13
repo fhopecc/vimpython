@@ -17,7 +17,7 @@ func! python#deploy()
     !py -m build
     call term_start('twine upload dist\*')
 endfunc
-map <buffer> ;d :call python#deploy()<cr>
+map <buffer> <leader>d :call python#deploy()<cr>
 
 " 執行
 func! python#execute()
@@ -32,7 +32,7 @@ func! python#done(job)
 endfunc
 
 " 交談式介面實驗
-map <buffer> ;i :term ipython
+map <buffer> <leader>i :term ipython
 
 func! python#nextterm()
     let name = bufnr('#')
@@ -50,7 +50,7 @@ func! python#execute2()
     let trace = py3eval('str(TRACE)')
     let job = job_start("cmd /c py ".file." >".output." 2>".trace, {"close_cb": "python#done"})
 endfunc
-map <buffer> ;e :call python#execute()<cr>
+map <buffer> <leader>e :call python#execute()<cr>
 
 function! python#done2(job)
     py3 from python_debug import tracebacktoqflist;tracebacktoqflist()
@@ -82,7 +82,7 @@ func! python#test()
     MaxWindow
     call term_start('python '.testfile, term_opt)
 endfunc
-map <buffer> ;t :call python#test()<cr>
+map <buffer> <leader>t :call python#test()<cr>
 
 func! python#test2()
     w!
@@ -100,7 +100,7 @@ func! python#profile()
     w!
     topleft :terminal ++rows=10 cmd /c py -m cProfile -s time %
 endfunc
-map <buffer> ;P :call python#profile()<cr>
+map <buffer> <leader>P :call python#profile()<cr>
 
 " 查詢說明
 nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
@@ -113,6 +113,3 @@ map <buffer> <F7> :w!<CR>:belowright :terminal python % --setup<CR>
 
 " 布署 VIM 模組
 map <buffer> <expr> <F8> ":cd " . g:wdriver . ":\\" . g:workdir . "\\vimfiles<CR>:w!<CR>:INV d<CR>" 
-
-" 註解--向後相容
-map <buffer> ;3 gcc<CR>
