@@ -11,11 +11,8 @@ class TestPythonDebug(unittest.TestCase):
         self.assertEqual(testfile(wdir / r'test_file.py')
                         ,str(wdir / r'test_file.py'))
         
-        self.assertEqual(testfile(wdir / 'file.py')
-                        ,str(wdir / r'test_file.py'))
-
         self.assertEqual(testfile(wdir / 'file2.py')
-                        ,str(wdir.parent / f'test_{wdir.name}.py' ))
+                        ,str(wdir / f'test.py' ))
 
 
     # def test_至定義(self):

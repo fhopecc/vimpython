@@ -18,7 +18,7 @@ func! python#deploy()
     call term_start('twine upload dist\*')
     " !twine upload dist\*
 endfunc
-map <buffer> <leader>d :call python#deploy()<cr>
+map <buffer> <leader>D :call python#deploy()<cr>
 
 " 執行
 func! python#execute()
