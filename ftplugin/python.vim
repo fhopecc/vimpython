@@ -16,6 +16,7 @@ func! python#deploy()
     !del dist\*
     !py -m build
     call term_start('twine upload dist\*')
+    " !twine upload dist\*
 endfunc
 map <buffer> <leader>d :call python#deploy()<cr>
 
