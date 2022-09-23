@@ -2,6 +2,22 @@ from fhopecc.winman import TEMP
 from pathlib import Path
 import re
 
+def 套件名稱(f):
+    from toml import load
+    t = load(f)
+    return t['project']['name']
+
+def 打包布署():
+    import vim
+    import os
+    cwd = vim.eval("expand('%:h')")
+    os.system(f'cd {cwd}')
+    os.system('del dist\*')
+    os.system('py -m build')
+    os.system(r'twine upload dist\*')
+    n = 套件名稱(Path(cwd) / 'pyproject.toml') 
+    os.system('python -m pip install {n} -U')
+
 def 至():
     from zhongwen.file import FileLocation
     import vim

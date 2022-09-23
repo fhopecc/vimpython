@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "zhongwen"
+version = "3.14189"
+authors = [
+  { name="fhopecc", email="fhopecc@gmail.com" },
+]
+description = "中文處理工具，包含中文數轉換、中文翻譯、字元切換、民國日期處理、法規自動完成等"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "diskcache", "pygtrans", "marisa_trie", "hanlp", "selenium"
+]
+[project.urls]
+"Homepage" = "https://github.com/fhopecc/zhongwen"
+"Bug Tracker" = "https://github.com/fhopecc/zhongwen/issues"

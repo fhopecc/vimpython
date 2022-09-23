@@ -8,7 +8,11 @@ class TestPythonDebug(unittest.TestCase):
         test_file = wdir / 'test_file.py'
         test_file.touch()
         self.test_file = test_file
-        
+
+    def test_deploy(self):
+        from python_debug import 套件名稱
+        self.assertEqual(套件名稱(wdir / 'pyproject.toml'), 'zhongwen')
+
     def test_testfile(self):
         from python_debug import testfile
         wdir = Path(__file__).parent
