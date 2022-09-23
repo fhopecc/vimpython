@@ -15,7 +15,7 @@ def 打包布署():
     os.system('del dist\*')
     os.system('py -m build')
     os.system(r'twine upload dist\*')
-    n = 套件名稱(Path(cwd).parent / 'pyproject.toml') 
+    n = 套件名稱(Path(cwd) / 'pyproject.toml') 
     os.system(f'python -m pip install {n} -U')
     os.system(f'python -m pip install {n} -U')
 
