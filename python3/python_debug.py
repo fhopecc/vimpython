@@ -17,6 +17,7 @@ def 打包布署():
     os.system(r'twine upload dist\*')
     n = 套件名稱(Path(cwd).parent / 'pyproject.toml') 
     os.system(f'python -m pip install {n} -U')
+    os.system(f'python -m pip install {n} -U')
 
 def 至():
     from zhongwen.file import FileLocation
