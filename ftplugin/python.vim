@@ -16,7 +16,7 @@ func! python#deploy()
     " !del dist\*
     " !py -m build
     " call term_start('twine upload dist\*')
-    call term_start('py3 打包布署()')
+    py3 打包布署()
     " !twine upload dist\*
 endfunc
 map <buffer> <leader>D :call python#deploy()<cr>
