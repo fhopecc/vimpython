@@ -20,19 +20,19 @@ def testfile(f:Path, debug=True):
 
     test = f.parent / f'test_{f.name}'
     if test.exists(): return str(test) 
-
+     
     pat = r'test_'
     if m:=re.match(pat, f.name):
         test = f
     if test.exists(): return str(test) 
 
-    test = f.parent.parent / f'test_{f.name}'
-    if test.exists(): return str(test) 
-
     test = f.parent / 'test.py'
     if test.exists(): return str(test) 
+
+    test = f.parent.parent / f'test_{f.parent.name}.py'
+    if test.exists(): return str(test) 
     
-    raise FileNotFoundError(f'[{f}]之測試檔不存在！')
+    raise FileNotFoundError(f'{f.name}尚無測試檔！')
 
 def 清除紀錄檔():
     TRACE.unlink()
