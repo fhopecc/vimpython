@@ -10,7 +10,7 @@ def 套件名稱(f):
 def 打包布署():
     import vim
     import os
-    cwd = vim.eval("expand('%:h')")
+    cwd = vim.eval("expand('%:p:h')")
     os.system(f'cd {cwd}')
     os.system('del dist\*')
     os.system('py -m build')
