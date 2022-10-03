@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "d:\g\110稅務局徵課會計\地價稅\資訊研析\landtax.py", line 166, in <module>
-    df = df.head(100)
-NameError: name 'df' is not defined

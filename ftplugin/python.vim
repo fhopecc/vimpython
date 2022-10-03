@@ -1,6 +1,6 @@
 " 執行系統命令
 " command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
-py3 from python_debug import testfile
+py3 from python_debug import testfile, 打包布署
 
 " 程式碼區塊折疊
 " set foldmethod=indent
@@ -12,10 +12,11 @@ command! -buffer MaxWindow normal <c-w>o
 " 佈署至 pypi
 func! python#deploy()
     w!
-    let dir = expand('%:h')
-    !del dist\*
-    !py -m build
-    call term_start('twine upload dist\*')
+    " let dir = expand('%:h')
+    " !del dist\*
+    " !py -m build
+    " call term_start('twine upload dist\*')
+    py3 打包布署()
     " !twine upload dist\*
 endfunc
 map <buffer> <leader>D :call python#deploy()<cr>
