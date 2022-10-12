@@ -31,14 +31,17 @@ def find_testfile(f:Path, debug=True):
     if not isinstance(f, Path): 
         f = Path(f)
 
+    test = f
+    pat = r'test_'
+    if m:=re.match(pat, test.name) and test.exists():
+        return str(test) 
+
     test = f.parent / f'test_{f.name}'
     if test.exists(): return str(test) 
-     
-    pat = r'test_'
-    if m:=re.match(pat, f.name):
-        test = f
-    if test.exists(): return str(test) 
 
+    test = f.parent.parent / f'test_{f.name}'
+    if test.exists(): return str(test) 
+     
     test = f.parent / 'test.py'
     if test.exists(): return str(test) 
 
