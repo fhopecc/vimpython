@@ -27,6 +27,7 @@ endfunc
 func! python#done(job)
     set filetype=pythontrace
 endfunc
+map <buffer> <leader>e :call python#test()<cr>
 
 " 交談式介面實驗
 map <buffer> <leader>i :term ipython
@@ -46,7 +47,7 @@ func! python#test()
 endfunc
 map <buffer> <leader>t :call python#test()<cr>
 
-" 測試效能
+" 效能
 func! python#profile()
     w!
     topleft :terminal ++rows=10 cmd /c py -m cProfile -s time %
