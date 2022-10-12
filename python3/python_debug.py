@@ -26,7 +26,7 @@ def 至():
     錯誤位置 = FileLocation(line)
     vim.command(f"e +{錯誤位置.列} {錯誤位置.路徑}")
 
-def testfile(f:Path, debug=True):
+def find_testfile(f:Path, debug=True):
     '依據路徑推論測試檔位置'
     if not isinstance(f, Path): 
         f = Path(f)

@@ -12,12 +12,7 @@ command! -buffer MaxWindow normal <c-w>o
 " 佈署至 pypi
 func! python#deploy()
     w!
-    " let dir = expand('%:h')
-    " !del dist\*
-    " !py -m build
-    " call term_start('twine upload dist\*')
     py3 打包布署()
-    " !twine upload dist\*
 endfunc
 map <buffer> <leader>D :call python#deploy()<cr>
 

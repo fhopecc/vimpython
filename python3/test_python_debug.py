@@ -13,25 +13,27 @@ class TestPythonDebug(unittest.TestCase):
         from python_debug import 套件名稱
         self.assertEqual(套件名稱(wdir / 'pyproject.toml'), 'zhongwen')
 
-    def test_testfile(self):
-        from python_debug import testfile
+    def test_find_testfile(self):
+        from python_debug import find_testfile
         wdir = Path(__file__).parent
 
-        self.assertEqual(testfile(wdir / r'test_file.py')
+        # 檔名前綴'test_'為測試檔
+        self.assertEqual(find_testfile(wdir / r'test_file.py')
                         ,str(wdir / r'test_file.py'))
         
-        self.assertEqual(testfile(wdir / 'file.py')
+        # 編檔名前綴'test_'即其測試檔
+        self.assertEqual(find_testfile(wdir / 'file.py')
                         ,str(wdir / f'test_file.py' ))
 
         testpy = wdir / 'test.py'
         testpy.touch()
-        self.assertEqual(testfile(wdir / 'file2.py')
+        self.assertEqual(find_testfile(wdir / 'file2.py')
                         ,str(wdir / f'test.py'))
         testpy.unlink()
         
         testpython3 = wdir.parent / 'test_python3.py'
         testpython3.touch()
-        self.assertEqual(testfile(wdir / 'file2.py')
+        self.assertEqual(find_testfile(wdir / 'file2.py')
                         ,str(testpython3))
         testpython3.unlink()
 
