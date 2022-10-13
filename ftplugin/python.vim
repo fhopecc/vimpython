@@ -24,10 +24,7 @@ func! python#execute()
     call term_start('python '.expand('%'), term_opt)
 endfunc
 
-func! python#done(job)
-    set filetype=pythontrace
-endfunc
-map <buffer> <leader>e :call python#test()<cr>
+map <buffer> <leader>e :call python#execute()<cr>
 
 " 交談式介面實驗
 map <buffer> <leader>i :term ipython
@@ -46,6 +43,11 @@ func! python#test()
     call term_start('python '.testfile, term_opt)
 endfunc
 map <buffer> <leader>t :call python#test()<cr>
+
+func! python#done(job)
+    set filetype=pythontrace
+endfunc
+
 
 " 效能
 func! python#profile()
