@@ -48,7 +48,6 @@ func! python#done(job)
     set filetype=pythontrace
 endfunc
 
-
 " 效能
 func! python#profile()
     w!
