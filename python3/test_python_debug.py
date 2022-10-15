@@ -21,30 +21,41 @@ class TestPythonDebug(unittest.TestCase):
         from python_debug import find_testfile
         wdir = Path(__file__).parent
 
+        # 中文檔名其測試檔檔名為其檔名前綴【測試】
+        test_file = wdir / '測試中文檔.py'
+        test_file.touch()
+        self.assertEqual(find_testfile(wdir / r'中文檔.py')
+                        ,str(wdir / r'測試中文檔.py'))
+        test_file.unlink()
+
         # 檔名前綴為'test_'即為測試檔
         self.assertEqual(find_testfile(wdir / r'test_file.py')
                         ,str(wdir / r'test_file.py'))
         
-        # 檔名加上前綴'test_'為其測試檔
-        # 在同目錄或父目錄搜尋
+        # 拉丁文檔名加上前綴'test_'為其測試檔
+        # 在同目錄搜尋
         self.assertEqual(find_testfile(wdir / 'file.py')
                         ,str(wdir / f'test_file.py' ))
 
+        # 在父目錄搜尋
         self.assertEqual(find_testfile(wdir / 'file2.py')
                         ,str(wdir.parent / f'test_file2.py' ))
 
-        testpy = wdir / 'test.py'
-        testpy.touch()
-        self.assertEqual(find_testfile(wdir / 'file2.py')
-                        ,str(wdir.parent / f'test_file2.py'))
-        testpy.unlink()
-        
+        # 在父目錄搜尋格式為測試前綴目錄名之測試檔
         testpython3 = wdir.parent / 'test_python3.py'
         testpython3.touch()
         self.assertEqual(find_testfile(wdir / 'file3.py')
                         ,str(testpython3))
         testpython3.unlink()
 
+
+        # test.py 為第二順位測試檔
+        testpy = wdir / 'test.py'
+        testpy.touch()
+        self.assertEqual(find_testfile(wdir / 'file2.py')
+                        ,str(wdir.parent / f'test_file2.py'))
+        testpy.unlink()
+        
     def tearDown(self):
         self.test_file.unlink()
         self.test_file2.unlink()

@@ -31,21 +31,29 @@ def find_testfile(f:Path, debug=True):
     if not isinstance(f, Path): 
         f = Path(f)
 
+    def 是否為中文檔名(檔名):
+        from zhongwen.text import 是否為中文字元
+        for c in 檔名:
+            if 是否為中文字元(c): return True
+        return False
+    
+    測試檔前綴 = '測試' if 是否為中文檔名(f.name) else 'test_' 
+
     test = f
-    pat = r'test_'
+    pat = 測試檔前綴
     if m:=re.match(pat, test.name) and test.exists():
         return str(test) 
 
-    test = f.parent / f'test_{f.name}'
+    test = f.parent / f'{測試檔前綴}{f.name}'
     if test.exists(): return str(test) 
 
-    test = f.parent.parent / f'test_{f.name}'
+    test = f.parent.parent / f'{測試檔前綴}{f.name}'
     if test.exists(): return str(test) 
      
     test = f.parent / 'test.py'
     if test.exists(): return str(test) 
 
-    test = f.parent.parent / f'test_{f.parent.name}.py'
+    test = f.parent.parent / f'{測試檔前綴}{f.parent.name}.py'
     if test.exists(): return str(test) 
     
     raise FileNotFoundError(f'{f.name}尚無測試檔！')
