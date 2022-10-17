@@ -51,7 +51,7 @@ endfunc
 " 效能
 func! python#profile()
     w!
-    topleft :terminal ++rows=10 cmd /c py -m cProfile -s time %
+    topleft :terminal ++rows=10 cmd /c py -m cProfile -s cumtime %
 endfunc
 map <buffer> <leader>P :call python#profile()<cr>
 
