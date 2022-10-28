@@ -50,6 +50,9 @@ def find_testfile(f:Path, debug=True):
     test = f.parent / f'{測試檔前綴}{f.name}'
     if test.exists(): return str(test) 
 
+    test = f.parent.parent / 'tests' / f'{測試檔前綴}{f.name}'
+    if test.exists(): return str(test) 
+
     test = f.parent.parent / f'{測試檔前綴}{f.name}'
     if test.exists(): return str(test) 
      
