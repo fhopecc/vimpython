@@ -44,6 +44,9 @@ def find_testfile(f:Path, debug=True):
     if m:=re.match(pat, test.name) and test.exists():
         return str(test) 
 
+    test = f.parent.parent / 'tests' / f'{測試檔前綴}{f.name}'
+    if test.exists(): return str(test) 
+
     test = f.parent / f'{測試檔前綴}{f.name}'
     if test.exists(): return str(test) 
 
