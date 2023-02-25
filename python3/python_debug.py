@@ -89,7 +89,6 @@ def 說明():
     import vim
     r = 光標物件()
     if r:
-        docfile = TEMP / '__doc__' 
-        docfile.write_text(r.docstring(), encoding='utf8')
-        vim.command(f":belowright :split {docfile}")
-        vim.command(f"set ft=pydoc")
+        # docfile = TEMP / '__doc__' 
+        # docfile.write_text(r.docstring(), encoding='utf8')
+        vim.command(f"call popup_atcursor('f{r.docstring()}', {})")
