@@ -1,20 +1,16 @@
-" 執行系統命令
-" command -nargs=+ R :belowright :terminal ++rows=5 cmd /c <args>
 py3 from python_debug import find_testfile, 打包布署
 
-" 程式碼區塊折疊
-" set foldmethod=indent
-" nnoremap <space> za
-" vnoremap <space> zf
 command! -buffer ChangeWindow normal <c-w>w
 command! -buffer MaxWindow normal <c-w>o
 
-" 佈署至 pypi
-func! python#deploy()
-    w!
-    py3 打包布署()
-endfunc
-map <buffer> <leader>D :call python#deploy()<cr>
+" 查詢名稱說明
+nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
+
+" 查找函數
+map <leader>c :set noimdisable<cr>:Leaderf function<cr>
+
+" 至定義
+nnoremap <buffer> gd <Cmd>py3 from python_debug import 至定義;至定義()<CR>
 
 " 執行
 func! python#execute()
@@ -55,14 +51,12 @@ func! python#profile()
 endfunc
 map <buffer> <leader>P :call python#profile()<cr>
 
-" 查詢說明
-nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
-
-" 至定義
-nnoremap <buffer> gd <Cmd>py3 from python_debug import 至定義;至定義()<CR>
+" 打包佈署
+func! python#deploy()
+    w!
+    py3 打包布署()
+endfunc
+map <buffer> <leader>D :call python#deploy()<cr>
 
 " 環境設定
 map <buffer> <F7> :w!<CR>:belowright :terminal python % --setup<CR>  
-
-" 布署 VIM 模組
-map <buffer> <expr> <F8> ":cd " . g:wdriver . ":\\" . g:workdir . "\\vimfiles<CR>:w!<CR>:INV d<CR>" 
