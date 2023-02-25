@@ -91,4 +91,4 @@ def 說明():
     if r:
         # docfile = TEMP / '__doc__' 
         # docfile.write_text(r.docstring(), encoding='utf8')
-        vim.command(f"call popup_atcursor('f{r.docstring()}', {})")
+        vim.command(f"call popup_atcursor('{r.docstring()}', {{}})")
