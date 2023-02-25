@@ -89,6 +89,9 @@ def 說明():
     import vim
     r = 光標物件()
     if r:
-        # docfile = TEMP / '__doc__' 
-        # docfile.write_text(r.docstring(), encoding='utf8')
-        vim.command(f"call popup_atcursor('{r.docstring()}', {{}})")
+        m = r.docstring()
+        m = m.split("\n")
+        m = [f'"{_m}"' for _m in m]
+        m = ','.join(m)
+        m = f'[{m}]'
+        vim.command(f"call popup_atcursor({m}, {{}})")
