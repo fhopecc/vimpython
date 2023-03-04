@@ -4,7 +4,7 @@ command! -buffer ChangeWindow normal <c-w>w
 command! -buffer MaxWindow normal <c-w>o
 
 " 查詢名稱說明
-nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr><c-w>w
+nnoremap <buffer> K <Cmd>py3 from python_debug import 說明;說明()<cr>
 
 " 查找函數
 map <leader>c :set noimdisable<cr>:Leaderf function<cr>
