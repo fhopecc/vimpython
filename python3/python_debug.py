@@ -96,9 +96,9 @@ def 說明():
     if r:
         m = r.docstring()
         m = m.split("\n")
-        m = [f"'{_m}'" for _m in m]
+        m = [f'"{_m}"' for _m in m]
         m = ','.join(m)
         m = f"[{m}]"
-        print(f"{m!r}")
+        # print(f"{m!r}")
         m = escape_vim_special_chars(m)
         vim.command(f"call popup_atcursor({m}, {{}})")
