@@ -96,6 +96,9 @@ def 說明():
     if r:
         m = r.docstring()
         m = m.split("\n")
+        import re
+        m = [''.replace('"', '＂') for _m in m]
+        m = [''.replace("'", '＇') for _m in m]
         m = [f"'{_m}'" for _m in m]
         m = ','.join(m)
         m = f"[{m}]"
