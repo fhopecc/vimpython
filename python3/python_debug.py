@@ -85,13 +85,20 @@ def 至定義():
         c = r.column
         vim.command(f"e +{l} {p}")
 
+def escape_vim_special_chars(text):
+    import vim
+    escaped_text = vim.eval('escape("' + text + '", "#")')
+    return escaped_text
+
 def 說明():
     import vim
     r = 光標物件()
     if r:
         m = r.docstring()
         m = m.split("\n")
-        m = [f'"{_m}"' for _m in m]
+        m = [f"'{_m}'" for _m in m]
         m = ','.join(m)
-        m = f'[{m}]'
+        m = f"[{m}]"
+        print(f"{m!r}")
+        m = escape_vim_special_chars(m)
         vim.command(f"call popup_atcursor({m}, {{}})")
