@@ -100,5 +100,5 @@ def 說明():
         m = ','.join(m)
         m = f"[{m}]"
         # print(f"{m!r}")
-        m = escape_vim_special_chars(m)
+        # m = escape_vim_special_chars(m)
         vim.command(f"call popup_atcursor({m}, {{}})")
