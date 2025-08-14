@@ -17,7 +17,7 @@ func! python#execute()
     w!
     let term_opt = {"close_cb": "python#done"}
     MaxWindow
-    call term_start('py '.expand('%'), term_opt)
+    call term_start('python '.expand('%'), term_opt)
 endfunc
 
 map <buffer> <leader>e :call python#execute()<cr>
